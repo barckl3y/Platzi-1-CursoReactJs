@@ -1,20 +1,16 @@
-import logo from './platzi.webp';
-import './App.css';
-
 import { TodoCounter } from './TodoCounter';
 import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
-
 import React from 'react';
 
 const defaultTodos=[
-  {text : 'Cortar cebolla',completed:true},
-  {text : 'Tomar el curso de intro a React.js',completed:false},
-  {text : 'Llorar con la Llorona',completed:false},
-  {text : 'LALALALA',completed:false},
-  {text : 'Conseguir empleo remoto',completed:false},
+  {id:1,text : 'Cortar cebolla',completed:true},
+  {id:2,text : 'Tomar el curso de intro a React.js',completed:false},
+  {id:3,text : 'Llorar con la Llorona',completed:false},
+  {id:4,text : 'LALALALA',completed:false},
+  {id:5,text : 'Conseguir empleo remoto',completed:true},
 ];
 
 // Un componente en React empieza por convención con mayuscula
@@ -22,7 +18,8 @@ const defaultTodos=[
 // header, img, p , son elementos de REACT , si empezaran con  mayuscula fueran componentes de REACT
 function App() {
   return (
-    <React.Fragment>
+    <>
+    {/* // <React.Fragment> */}
     {/* // <div className="App"> */}
 
       <TodoCounter completed={3} total={5} />
@@ -30,7 +27,7 @@ function App() {
 
       <TodoList>
         {defaultTodos.map(todo =>(
-          <TodoItem key={todo.text} text= {todo.text} completed={todo.completed} />
+          <TodoItem id={todo.id} text={todo.text} completed={todo.completed} />
         ))}
         {/* La propiedad Key es para que cada elemento de un componente tenga un identificador único */}
         {/* <TodoItem mensaje='tarea 1' />
@@ -41,7 +38,8 @@ function App() {
 
       <CreateTodoButton />
     {/* </div> */}
-    </React.Fragment>
+    {/* // </React.Fragment> */}
+    </>
   );
 }
 

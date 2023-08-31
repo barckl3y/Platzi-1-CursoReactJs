@@ -1,7 +1,23 @@
+import './TodoCounter.css'
+
+const estilos={
+  backgroundColor:'red'
+}
+
 function TodoCounter({total,completed}){
 // function TodoCounter(props){
     return(
-      <h1>Has completado {completed} de {total} TODOS</h1>
+      // <h1 style={{
+      //   // fontSize:24
+      //   fontSize:'24px',
+      //   textAlign:'center',
+      //   margin:0,
+      //   padding:'48px',
+      // }}
+      // >
+      <h1 className="TodoCounter">
+        Has completado <span>{completed}</span> de <span>{total}</span> TODOS
+      </h1>
     );
 }
 

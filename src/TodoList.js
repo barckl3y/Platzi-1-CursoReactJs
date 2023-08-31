@@ -1,8 +1,10 @@
+import './TodoList.css';
+
 // la propiedad children transforma todo lo que esta dentro de un componente como la propiedad children
 function TodoList({children}){
 // function TodoList(props){
     return(
-      <ul>
+      <ul className='TodoList'>
         {children}
       </ul>
     );
