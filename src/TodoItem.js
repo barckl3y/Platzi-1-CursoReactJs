@@ -1,6 +1,6 @@
 import './TodoItem.css';
 
-function TodoItem({id,text,completed}){
+function TodoItem({id,text,completed,todos,setTodos}){
 // function TodoItem(props){
   return(
     <li key={id} className="TodoItem">
@@ -10,7 +10,11 @@ function TodoItem({id,text,completed}){
       <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>
         {text}
       </p>
-      <span className="Icon Icon-delete">
+      {/* <span className="Icon Icon-delete" onClick={(event)=>{console.log(text)}}> */}
+      <span className="Icon Icon-delete" onClick={(event)=>{
+        const searchedTodos = todos.filter(todo => todo.id !== id);
+        setTodos(searchedTodos);
+      }}>
         X
       </span>
     </li>

@@ -12,6 +12,7 @@ const defaultTodos=[
   {id:4,text : 'LALALALA',completed:false},
   {id:5,text : 'Conseguir empleo remoto',completed:true},
   {id:6,text : 'Usar estados derivados',completed:true},
+  {id:7,text : 'Probando tildes como canción',completed:true},
 ];
 
 // Un componente en React empieza por convención con mayuscula
@@ -24,6 +25,10 @@ function App() {
   const [todos,setTodos]=React.useState(defaultTodos);
   const completedTodos=todos.filter(todo => todo.completed).length; //estos son estados derivados , creados a partir de un estado use state
   const totalTodos=todos.length;//estos son estados derivados , creados a partir de un estado use state
+
+  const searchedTodos=todos.filter(
+    todo => todo.text.toLowerCase().includes(searchValue.toLowerCase())
+  )
 
   console.log('Los usuarios buscan todos de ' +
   searchValue);
@@ -40,8 +45,8 @@ function App() {
       />
 
       <TodoList>
-        {todos.map(todo =>(
-          <TodoItem id={todo.id} text={todo.text} completed={todo.completed} />
+        {searchedTodos.map(todo =>(
+          <TodoItem id={todo.id} text={todo.text} completed={todo.completed} todos={todos} setTodos={setTodos} />
         ))}
         {/* La propiedad Key es para que cada elemento de un componente tenga un identificador único */}
         {/* <TodoItem mensaje='tarea 1' />
