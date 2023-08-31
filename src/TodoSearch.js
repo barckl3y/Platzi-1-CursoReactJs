@@ -3,7 +3,16 @@ import './TodoSearch.css';
 
 function TodoSearch(){
     return(
-      <input placeholder="Cortar ceboola" className="TodoSearch" />
+      <input 
+      placeholder="Cortar ceboola" 
+      className="TodoSearch"
+      onChange={(event)=>{
+        console.log("Escribiste en el input TodoSearch");
+        console.log(event);
+        console.log(event.target);
+        console.log(event.target.value); //con esto obtenemos lo que estan escribiendo en el input
+      }}
+      />
     );
 }
 
