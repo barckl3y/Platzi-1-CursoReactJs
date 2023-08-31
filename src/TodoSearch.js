@@ -2,7 +2,7 @@ import React from 'react';
 import './TodoSearch.css';
 
 
-function TodoSearch(){
+function TodoSearch({searchValue,setSearchValue}){
   // El estado de react es inmutable y se
   // necesita de una función actualizadora
   // del estado , controlada por React Js 
@@ -11,10 +11,10 @@ function TodoSearch(){
   // estados de nuestro componente -actualización
 
   // useState nos permite poner un valor inicial
-  const [searchValue,setSearchValue]=React.useState('');
+  // const [searchValue,setSearchValue]=React.useState('');
 
-  console.log('Los usuarios buscan todos de ' +
-  searchValue);
+  // console.log('Los usuarios buscan todos de ' +
+  // searchValue);
 
   return(
     <input 
