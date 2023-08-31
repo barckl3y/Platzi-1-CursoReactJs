@@ -1,6 +1,6 @@
 function TodoSearch(){
     return(
-      <input placedholder="Cortar ceboola" />
+      <input placeholder="Cortar ceboola" />
     );
 }
 
