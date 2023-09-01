@@ -15,9 +15,14 @@ function TodoCounter({total,completed}){
       //   padding:'48px',
       // }}
       // >
-      <h1 className="TodoCounter">
-        Has completado <span>{completed}</span> de <span>{total}</span> TODOS
-      </h1>
+      completed == total ?
+        <h1 className="TodoCounter">
+          Felicitacones has completado <span>{completed}</span> de <span>{total}</span> TODOS
+        </h1>
+      :
+        <h1 className="TodoCounter">
+          Has completado <span>{completed}</span> de <span>{total}</span> TODOS
+        </h1>
     );
 }
 

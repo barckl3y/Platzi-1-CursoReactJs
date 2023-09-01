@@ -30,8 +30,40 @@ function App() {
     todo => todo.text.toLowerCase().includes(searchValue.toLowerCase())
   )
 
-  console.log('Los usuarios buscan todos de ' +
-  searchValue);
+  // console.log('Los usuarios buscan todos de ' +searchValue);
+
+  const deleteTodo =(id) => {
+    // con los ... se dice quiero una copia de esa variable
+
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+
+  };
+
+  const deleteTodo2 =(id) => {
+    // con los ... se dice quiero una copia de esa variable
+
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+      (todo) => todo.id ==id
+    );
+    // splice dice desde que index , a partir de ahí cuantos pedazos corto
+    newTodos.splice(todoIndex,1);
+    setTodos(newTodos);
+
+  };
+
+  const completedTodo =(id) => {
+    // con los ... se dice quiero una copia de esa variable
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+      (todo) => todo.id ==id
+    );
+
+    // con esto ponemos el valor contrario del estado actual , completado o no completado al dar clic en los items
+    newTodos[todoIndex].completed=!newTodos[todoIndex].completed;
+    setTodos(newTodos);
+  };
 
   return (
     <>
@@ -46,7 +78,15 @@ function App() {
 
       <TodoList>
         {searchedTodos.map(todo =>(
-          <TodoItem id={todo.id} text={todo.text} completed={todo.completed} todos={todos} setTodos={setTodos} />
+          <TodoItem 
+            id={todo.id} 
+            text={todo.text} 
+            completed={todo.completed} 
+            todos={todos} 
+            setTodos={setTodos} 
+            onComplete={()=>completedTodo(todo.id)}
+            onDelete={()=>{deleteTodo2(todo.id)}}
+          />
         ))}
         {/* La propiedad Key es para que cada elemento de un componente tenga un identificador único */}
         {/* <TodoItem mensaje='tarea 1' />
