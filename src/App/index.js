@@ -33,23 +33,8 @@ import {useLocalStorage} from './useLocalStorage'
 // Lo de adentro de return es JSX no es HTMl , en JSX se pone className en ves de class que se pone en HTML
 // header, img, p , son elementos de REACT , si empezaran con  mayuscula fueran componentes de REACT
 function App() {
-  // usando localstorage , recordar los pasos para guardar objetos
-  // en localstoragre
-
-  // const localStorageTodos=localStorage.getItem('TODOS_V1');
-  // let parsedTodos;
-
-  // if (!localStorageTodos){
-  //   localStorage.setItem('TODOS_V1',JSON.stringify([]));
-  //   parsedTodos=[];
-  // }else{
-  //   parsedTodos=JSON.parse(localStorageTodos);
-  // }
-
-  // const [todos,setTodos]=React.useState(parsedTodos);
   const [todos,saveTodos]=useLocalStorage('TODOS_V1',[]);
   const [searchValue,setSearchValue]=React.useState('');
-  // const [todos,setTodos]=React.useState(defaultTodos);
   const completedTodos=todos.filter(todo => todo.completed).length; //estos son estados derivados , creados a partir de un estado use state
   const totalTodos=todos.length;//estos son estados derivados , creados a partir de un estado use state
 
@@ -57,23 +42,7 @@ function App() {
     todo => todo.text.toLowerCase().includes(searchValue.toLowerCase())
   )
 
-  // console.log('Los usuarios buscan todos de ' +searchValue);
-
-  // const saveTodos = (newTodos) =>{
-  //   localStorage.setItem('TODOS_V1',JSON.stringify(newTodos));
-  //   setTodos(newTodos);
-  // };
-
-  // const deleteTodo =(id) => {
-  //   // con los ... se dice quiero una copia de esa variable
-
-  //   const newTodos = todos.filter(todo => todo.id !== id);
-  //   // setTodos(newTodos);
-  //   saveTodos(newTodos);
-
-  // };
-
-  const deleteTodo2 =(id) => {
+  const deleteTodo =(id) => {
     // con los ... se dice quiero una copia de esa variable
 
     const newTodos = [...todos];
@@ -101,9 +70,6 @@ function App() {
 
   return (
     <>
-    {/* // <React.Fragment> */}
-    {/* // <div className="App"> */}
-
       <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch
         searchValue={searchValue}
@@ -114,24 +80,18 @@ function App() {
         {searchedTodos.map(todo =>(
           <TodoItem 
             id={todo.id} 
+            key={todo.id}
             text={todo.text} 
             completed={todo.completed} 
             todos={todos} 
             setTodos={saveTodos} 
             onComplete={()=>completedTodo(todo.id)}
-            onDelete={()=>{deleteTodo2(todo.id)}}
+            onDelete={()=>{deleteTodo(todo.id)}}
           />
         ))}
-        {/* La propiedad Key es para que cada elemento de un componente tenga un identificador único */}
-        {/* <TodoItem mensaje='tarea 1' />
-        <TodoItem mensaje='tarea 2' />
-        <TodoItem mensaje='tarea 3' />
-        <TodoItem mensaje='tarea 5' /> */}
       </TodoList>
 
       <CreateTodoButton />
-    {/* </div> */}
-    {/* // </React.Fragment> */}
     </>
   );
 }
