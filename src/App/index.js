@@ -38,6 +38,28 @@ function App() {
   const completedTodos=todos.filter(todo => todo.completed).length; //estos son estados derivados , creados a partir de un estado use state
   const totalTodos=todos.length;//estos son estados derivados , creados a partir de un estado use state
 
+
+  console.log('Log 1');
+
+  // eso se ejecuta siempre
+  // React.useEffect(()=>{
+  //   console.log('L00000og 2');
+  // });
+
+  // esto hace que se ejecute una sola vez
+  // React.useEffect(()=>{
+  //   console.log('L00000og 2');
+  // },[]);
+
+  // esto hace que se ejecute solo si cambia el estado de totalTodos
+  React.useEffect(()=>{
+    console.log('L00000og 2');
+  },[totalTodos]);
+
+  console.log('Log 3');
+
+
+
   const searchedTodos=todos.filter(
     todo => todo.text.toLowerCase().includes(searchValue.toLowerCase())
   )
