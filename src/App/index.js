@@ -1,11 +1,13 @@
 import React from 'react';
-import { TodoCounter } from '../TodoCounter';
-import { TodoSearch } from '../TodoSearch';
-import { TodoList } from '../TodoList';
-import { TodoItem } from '../TodoItem';
-import { CreateTodoButton } from '../CreateTodoButton';
+// import { TodoCounter } from '../TodoCounter';
+// import { TodoSearch } from '../TodoSearch';
+// import { TodoList } from '../TodoList';
+// import { TodoItem } from '../TodoItem';
+// import { CreateTodoButton } from '../CreateTodoButton';
+import { AppUI } from './AppUI';
 import {useLocalStorage} from './useLocalStorage'
 
+// Step #1 : Put this array in the navigator console
 // const defaultTodos=[
 //   {id:1,text : 'Cortar cebolla',completed:true},
 //   {id:2,text : 'Tomar el curso de intro a React.js',completed:false},
@@ -16,17 +18,15 @@ import {useLocalStorage} from './useLocalStorage'
 //   {id:7,text : 'Probando tildes como canción',completed:true},
 // ];
 
+// Step #2 : Stringify the previuos array object of initial data
 // localStorage.setItem('TODOS_V1',JSON.stringify(defaultTodos));
 
+// This steps are included in the source sode programming
 // const stringfiedTodos=JSON.stringify(defaultTodos);
 // localStorage.setItem('TODOS_V1',stringfiedTodos);
 // const localStorageTodos=localStorage.getItem('TODOS_V1');
 // const parsedTodos=JSON.parse(localStorageTodos);
 // localStorage.removeItem('TODOS_V1');
-
-
-
-
 
 
 // Un componente en React empieza por convención con mayuscula
@@ -68,32 +68,17 @@ function App() {
     saveTodos(newTodos);
   };
 
-  return (
-    <>
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {searchedTodos.map(todo =>(
-          <TodoItem 
-            id={todo.id} 
-            key={todo.id}
-            text={todo.text} 
-            completed={todo.completed} 
-            todos={todos} 
-            setTodos={saveTodos} 
-            onComplete={()=>completedTodo(todo.id)}
-            onDelete={()=>{deleteTodo(todo.id)}}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-    </>
-  );
+  return(
+    <AppUI 
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completedTodo={completedTodo}
+      deleteTodo={deleteTodo}
+    />
+  )
 }
 
 
