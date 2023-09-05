@@ -7,6 +7,7 @@ function useLocalStorage(itemName,initialValue){
     const [loading, setLoading] =React.useState(true);
     const [error, setError] =React.useState(false);
 
+    // SImulamos asincronismo con el setTimeout
     React.useEffect(()=>{
       setTimeout(()=>{
         try {
