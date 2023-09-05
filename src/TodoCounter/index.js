@@ -1,8 +1,8 @@
 import './TodoCounter.css'
 
-const estilos={
-  backgroundColor:'red'
-}
+// const estilos={
+//   backgroundColor:'red'
+// }
 
 function TodoCounter({total,completed}){
 // function TodoCounter(props){
@@ -15,7 +15,7 @@ function TodoCounter({total,completed}){
       //   padding:'48px',
       // }}
       // >
-      completed == total ?
+      completed === total ?
         <h1 className="TodoCounter">
           Felicitaciones has completado <span>{completed}</span> de <span>{total}</span> TODOS
         </h1>

@@ -1,9 +1,10 @@
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
 import React from 'react';
+import { TodoCounter } from '../TodoCounter';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { TodoItem } from '../TodoItem';
+import { CreateTodoButton } from '../CreateTodoButton';
+import {useLocalStorage} from './useLocalStorage'
 
 // const defaultTodos=[
 //   {id:1,text : 'Cortar cebolla',completed:true},
@@ -24,27 +25,7 @@ import React from 'react';
 // localStorage.removeItem('TODOS_V1');
 
 
-// un custom hooks empieza con use
-function useLocalStorage(itemName,initialValue){
-  const localStorageItem=localStorage.getItem(itemName);
-  let parsedItem;
 
-  if (!localStorageItem){
-    localStorage.setItem(itemName,JSON.stringify(initialValue));
-    parsedItem=[];
-  }else{
-    parsedItem=JSON.parse(localStorageItem);
-  }
-
-  const [item, setItem] =React.useState(parsedItem);
-
-  const saveItem = (newItem) =>{
-    localStorage.setItem(itemName,JSON.stringify(newItem));
-    setItem(newItem);
-  };
-
-  return [item,saveItem];
-}
 
 
 
@@ -83,21 +64,21 @@ function App() {
   //   setTodos(newTodos);
   // };
 
-  const deleteTodo =(id) => {
-    // con los ... se dice quiero una copia de esa variable
+  // const deleteTodo =(id) => {
+  //   // con los ... se dice quiero una copia de esa variable
 
-    const newTodos = todos.filter(todo => todo.id !== id);
-    // setTodos(newTodos);
-    saveTodos(newTodos);
+  //   const newTodos = todos.filter(todo => todo.id !== id);
+  //   // setTodos(newTodos);
+  //   saveTodos(newTodos);
 
-  };
+  // };
 
   const deleteTodo2 =(id) => {
     // con los ... se dice quiero una copia de esa variable
 
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.id ==id
+      (todo) => todo.id ===id
     );
     // splice dice desde que index , a partir de ahí cuantos pedazos corto
     newTodos.splice(todoIndex,1);
@@ -109,7 +90,7 @@ function App() {
     // con los ... se dice quiero una copia de esa variable
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.id ==id
+      (todo) => todo.id ===id
     );
 
     // con esto ponemos el valor contrario del estado actual , completado o no completado al dar clic en los items
