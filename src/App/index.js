@@ -33,13 +33,16 @@ import {useLocalStorage} from './useLocalStorage'
 // Lo de adentro de return es JSX no es HTMl , en JSX se pone className en ves de class que se pone en HTML
 // header, img, p , son elementos de REACT , si empezaran con  mayuscula fueran componentes de REACT
 function App() {
-  const [todos,saveTodos]=useLocalStorage('TODOS_V1',[]);
+  // const {todos,saveTodos}=useLocalStorage('TODOS_V1',[]);
+
+  // de esta forma renombramos propiedades y recibimos varios returns
+  const {item:todos,saveItem:saveTodos,loading,error,}=useLocalStorage('TODOS_V1',[]);
   const [searchValue,setSearchValue]=React.useState('');
   const completedTodos=todos.filter(todo => todo.completed).length; //estos son estados derivados , creados a partir de un estado use state
   const totalTodos=todos.length;//estos son estados derivados , creados a partir de un estado use state
 
 
-  console.log('Log 1');
+  // console.log('Log 1');
 
   // eso se ejecuta siempre
   // React.useEffect(()=>{
@@ -52,11 +55,11 @@ function App() {
   // },[]);
 
   // esto hace que se ejecute solo si cambia el estado de totalTodos
-  React.useEffect(()=>{
-    console.log('L00000og 2');
-  },[totalTodos]);
+  // React.useEffect(()=>{
+  //   console.log('L00000og 2');
+  // },[totalTodos]);
 
-  console.log('Log 3');
+  // console.log('Log 3');
 
 
 
@@ -92,6 +95,8 @@ function App() {
 
   return(
     <AppUI 
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
